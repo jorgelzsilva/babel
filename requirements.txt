@@ -1,0 +1,6 @@
+openai
+lxml
+python-docx
+EbookLib
+beautifulsoup4
+pytest

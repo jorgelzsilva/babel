@@ -1,0 +1,27 @@
+# Credentials
+.env
+*.key
+secrets.json
+
+# Virtual Environment
+babel/
+venv/
+.venv/
+env/
+Include/
+Lib/
+Scripts/
+pyvenv.cfg
+
+# Caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Input and Output
+input/
+output/
