@@ -39,7 +39,7 @@ class LLMClient:
         numbered_input = "\n".join([f"[{i+1}] {text}" for i, text in enumerate(text_chunk)])
         
         # We need to inform the LLM about the format in the prompt
-        format_instruction = f"Translate the following {len(text_chunk)} items. Return exactly {len(text_chunk)} items, numbered like [1], [2], etc. One per line. Do not merge chunks."
+        format_instruction = f"Translate the following {len(text_chunk)} items. Return exactly {len(text_chunk)} items, numbered like [1], [2], etc. One per line. Do not merge chunks. CRITICAL: Output ONLY the requested translation. DO NOT provide explanations, reasoning, or <think> tags. Answer directly."
 
         messages = [
             {"role": "system", "content": system_prompt + "\n" + format_instruction},

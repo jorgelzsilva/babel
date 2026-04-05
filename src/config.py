@@ -6,7 +6,7 @@ API_KEY = "lm-studio" # Local server doesn't usually need a real key
 
 # Chunking Configuration
 MAX_PARAGRAPHS = 20
-MAX_TOKENS = 8192
+MAX_TOKENS = 3500
 
 # Retry/Timeout Configuration
 REQUEST_TIMEOUT = 300 # seconds (5 minutes for slow local inference)

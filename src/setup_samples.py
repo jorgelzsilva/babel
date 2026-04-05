@@ -4,7 +4,8 @@ from ebooklib import epub
 from lxml import etree
 
 def create_samples():
-    base_dir = r"c:\Users\jorge\Documents\babel\input"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    base_dir = os.path.join(os.path.dirname(script_dir), 'input')
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)
 
@@ -33,6 +34,9 @@ def create_samples():
     c1 = epub.EpubHtml(title='Intro', file_name='intro.xhtml', lang='en')
     c1.content = '<html><head></head><body><h1>Introduction</h1><p>This is the EPUB content.</p></body></html>'
     book.add_item(c1)
+    
+    # Define TOC
+    book.toc = (epub.Link('intro.xhtml', 'Introduction', 'intro'), )
     
     # Add NCX and Nav
     book.add_item(epub.EpubNcx())

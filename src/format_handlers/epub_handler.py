@@ -1,8 +1,11 @@
 import ebooklib
 from ebooklib import epub
-from bs4 import BeautifulSoup, NavigableString
+from bs4 import BeautifulSoup, NavigableString, XMLParsedAsHTMLWarning
+import warnings
 from .base import BaseHandler
 import uuid
+
+warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 class BS4NodeWrapper:
     """
@@ -101,8 +104,13 @@ class EpubHandler(BaseHandler):
         """
         if toc is None:
             return
+            
+        if not isinstance(toc, (list, tuple)):
+            toc_list = [toc]
+        else:
+            toc_list = toc
         
-        for i, item in enumerate(toc):
+        for i, item in enumerate(toc_list):
             if isinstance(item, epub.Link):
                 # Fix None uid on Link objects
                 if item.uid is None:
@@ -138,6 +146,10 @@ class EpubHandler(BaseHandler):
                 content = '<?xml version="1.0" encoding="utf-8"?>\n' + content
             item.set_content(content.encode('utf-8'))
         
+        # Ensure TOC is a list/tuple before sanitizing and saving
+        if self.book.toc is not None and not isinstance(self.book.toc, (list, tuple)):
+            self.book.toc = [self.book.toc]
+            
         # Sanitize TOC entries to prevent None uid errors
         self._sanitize_toc(self.book.toc)
             

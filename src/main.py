@@ -1,12 +1,16 @@
 import os
 import sys
 import time
-from . import config
-from .llm_client import LLMClient
-from .translator import Translator
-from .format_handlers.cxml_handler import CXMLHandler
-from .format_handlers.docx_handler import DocxHandler
-from .format_handlers.epub_handler import EpubHandler
+
+# Adiciona a raiz do projeto ao sys.path para que os imports funcionem ao rodar como script
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from src import config
+from src.llm_client import LLMClient
+from src.translator import Translator
+from src.format_handlers.cxml_handler import CXMLHandler
+from src.format_handlers.docx_handler import DocxHandler
+from src.format_handlers.epub_handler import EpubHandler
 
 def get_handler(file_path):
     _, ext = os.path.splitext(file_path)

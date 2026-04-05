@@ -10,8 +10,10 @@ class MockLLMClient:
 
 def run_test():
     print("Running Mock Test...")
-    input_dir = r"c:\Users\jorge\Documents\babel\input"
-    output_dir = r"c:\Users\jorge\Documents\babel\output"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    base_root = os.path.dirname(script_dir)
+    input_dir = os.path.join(base_root, 'input')
+    output_dir = os.path.join(base_root, 'output')
     
     files = ["sample.cxml", "sample.docx", "sample.epub"]
     
